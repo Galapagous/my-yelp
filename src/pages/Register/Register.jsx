@@ -1,26 +1,25 @@
 import Picture from "../../components/Assets/yp-3.jpg"
 import "./register.scss"
 import { useState } from "react"
-import { Amplify, API, graphqlOperation } from 'aws-amplify'
+import { API, graphqlOperation } from 'aws-amplify'
 import { createRestaurant } from "../../graphql/mutations"
 
 const initialState = {name: "", address: "", state: ""}
 
 const Register = ()=>{
   const [formState, setFormState] = useState(initialState)
-  const [restaurant, setRestaurant] = useState([])
   
   const setInput = (key, value)=>{
     setFormState({ ...formState, [key]: value })
   }
-  //---------------Handling form submission---------------
+  //---------------Adding form Data to AWS---------------
   const addRestaurant = async()=>{
     try {
       if (!formState.name || !formState.address || !formState.state) return
-      const myrestaurant = { ...formState }
-      setRestaurant([...restaurant, myrestaurant])
+      let myrestaurant = { ...formState }
+      await API.graphql(graphqlOperation(createRestaurant, {input: myrestaurant}))
       setFormState(initialState)
-      await API.graphql(graphqlOperation(createRestaurant, {input: restaurant}))
+      myrestaurant = ({})
     } catch (err) {
       console.log('error creating restaurants:', err)
     }
