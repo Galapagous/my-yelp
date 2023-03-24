@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { Amplify } from 'aws-amplify';
+import Navbar from './components/Navbar/Navbar';
+import Home from './pages/Home/Home';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 
-function App() {
+import awsExports from './aws-exports';
+import Register from './pages/Register/Register';
+Amplify.configure(awsExports);
+
+function App({ signOut, user }) {
+  const Layout = ()=>{
+    return(
+      <div className='main-container'>
+        <Navbar out = {signOut} current = {user}/>
+        <div className='main-content'>
+          <Outlet/>
+        </div>
+      </div>
+    )
+  }
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: (<Layout/>),
+      children: [
+        {
+          path: '/',
+          element: <Home/>
+        },
+        {
+          path: "/Add",
+          element:<Register/>
+        }
+      ]
+    }
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <>
+    //   {/* <h1>Hello {user.username}</h1> */}
+    //   <button onClick={signOut}>Sign out</button>
+    // </>
+    <RouterProvider router={router}></RouterProvider>
   );
 }
 
-export default App;
+export default withAuthenticator(App);

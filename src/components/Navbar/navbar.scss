@@ -1,0 +1,43 @@
+.navbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: black;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  img{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  .left{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    span{
+      color: white;
+    }
+  }
+  .middle{
+    img{
+      width: fit-content;
+      height: 30px;
+    }
+  }
+  .right{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    button{
+      background-color: red;
+      color: white;
+      padding: 5px 15px;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
