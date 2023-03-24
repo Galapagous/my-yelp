@@ -29,6 +29,7 @@ const Register = ()=>{
   const handleSubmit = (e)=>{
     e.preventDefault()
     addRestaurant()
+    window.location.href = "/"
   }
   return(
     <div className="single">

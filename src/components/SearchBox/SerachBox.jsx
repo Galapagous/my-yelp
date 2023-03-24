@@ -1,11 +1,18 @@
 import "./searchbox.scss"
+import {useState} from "react"
+
 const SearchBox = ()=>{
+  const [soon, setSoon] = useState(false)
   const handleSearch = (e)=>{
     e.preventDefault()
-    alert("search requested")
+    setSoon(true)
   }
   return(
     <div className="searchBox">
+    {soon && <div className="soon">
+      <h1>Coming Soon</h1>
+      <p>Sorry this functionality is not yet implemented</p>
+    </div>}
     <form onSubmit={handleSearch}>
       <input type="text" placeholder="Find 'dinner'"/>
       <input type="text" placeholder="Near 'texas'"/>

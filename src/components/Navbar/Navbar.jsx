@@ -19,8 +19,8 @@ const Navbar = (props)=>{
       </Link>
       </div>
       <div className="right">
-      <button onClick={props.out}>Out</button>
-      <h3 style={{color:"white", fontSize: "1rem"}}>{props.current.username}</h3>
+      <button onClick={props.out}>Sign Out</button>
+      <h3 style={{color:"white", fontSize: "1rem"}}>Hello {props.current.attributes.email.split("@")[0]}</h3>
       </div>
     </div>
   )

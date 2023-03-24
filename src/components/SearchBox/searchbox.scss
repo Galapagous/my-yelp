@@ -2,6 +2,15 @@
   width: 300px;
   height: fit-content;
   background-color: rgb(255, 255, 255);
+  h1{
+    text-align: center;
+    color: red;
+    font-size: 1.3rem;
+  }
+  p{
+    text-align: center;
+    font-weight: 600;
+  }
   form{
     padding: 20px;
     display: flex;

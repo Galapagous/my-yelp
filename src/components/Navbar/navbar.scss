@@ -30,6 +30,7 @@
   }
   .right{
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
     gap: 20px;
     button{
