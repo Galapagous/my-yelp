@@ -19,7 +19,7 @@ const Home = ()=>{
       }
       fetchRestaurants()
     };
-  }, [])
+  }, [restaurantList])
   return(
     <div className="home">
     <div className='the-search'>
