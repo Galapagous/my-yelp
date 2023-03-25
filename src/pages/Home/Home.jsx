@@ -26,9 +26,10 @@ const Home = ()=>{
      <SearchBox/>
     </div>
     <div className='main'>
+    {console.log(restaurantList)}
     {restaurantList.map(each_restaurant=>{
       return(
-      <RestaurantCard name = {each_restaurant.name} address = {each_restaurant.address} pix = {Photo} state = {each_restaurant.state}/>
+      <RestaurantCard key={each_restaurant.id} info = {each_restaurant} pix = {Photo}/>
       )
     })}
     </div>

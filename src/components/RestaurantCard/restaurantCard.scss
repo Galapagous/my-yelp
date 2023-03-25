@@ -1,4 +1,5 @@
 .restaurant{
+.res-container{
   width: 500px;
   height: 300px;
   display: flex;
@@ -20,4 +21,20 @@
       color: lightgrey;
     }
   }
+}
+button{
+  width: 70px;
+  height: 40px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  &:hover{
+    color: red;
+    background-color: white;
+    border: 2px solid red;
+  }
+}
 }
