@@ -9,10 +9,10 @@ const SearchBox = ()=>{
   }
   return(
     <div className="searchBox">
-    {soon && <div className="soon">
+    {soon ? <div className="soon">
       <h1>Coming Soon</h1>
       <p>Sorry this functionality is not yet implemented</p>
-    </div>}
+    </div> : <div><h1>Search</h1></div>}
     <form onSubmit={handleSearch}>
       <input type="text" placeholder="Find 'dinner'"/>
       <input type="text" placeholder="Near 'texas'"/>

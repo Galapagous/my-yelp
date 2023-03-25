@@ -1,5 +1,4 @@
 import "./navbar.scss"
-import Add from "../Assets/add.png"
 import Yelp from "../Assets/yelp.png"
 import { Link } from "react-router-dom"
 const Navbar = (props)=>{
@@ -7,7 +6,7 @@ const Navbar = (props)=>{
     <div className="navbar">
       <div className="left">
       <Link to="/add">
-      <img src={Add} alt="add button"/>
+      <button>+</button>
       </Link>
       <div className="add-text">
       <span>Add New</span>
