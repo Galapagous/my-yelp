@@ -2,24 +2,26 @@ import Picture from "../../components/Assets/yp-3.jpg"
 import "./register.scss"
 import { useState } from "react"
 import { API, graphqlOperation } from 'aws-amplify'
-import { createRestaurant } from "../../graphql/mutations"
-
-const initialState = {name: "", address: "", state: ""}
+import * as mutations from "../../graphql/mutations"
 
 const Register = ()=>{
-  const [formState, setFormState] = useState(initialState)
-  
-  const setInput = (key, value)=>{
-    setFormState({ ...formState, [key]: value })
-  }
+  const [name, setName] = useState("")
+  const [address, setAddress] = useState("")
+  const [state, setState] = useState("")
   //---------------Adding form Data to AWS---------------
   const addRestaurant = async()=>{
     try {
-      if (!formState.name || !formState.address || !formState.state) return
-      let myrestaurant = { ...formState }
-      await API.graphql(graphqlOperation(createRestaurant, {input: myrestaurant}))
-      setFormState(initialState)
-      myrestaurant = ({})
+      if (!name||!address||!state) return
+      console.log({
+        name: name,
+        address: address,
+        state: state
+      })
+      await API.graphql(graphqlOperation(mutations.createRestaurant, {input: {
+        name: name,
+        address: address,
+        state: state
+      }}))
     } catch (err) {
       console.log('error creating restaurants:', err)
     }
@@ -37,9 +39,9 @@ const Register = ()=>{
       <div className="form-data">
         <div className="left-form">
           <form onSubmit={handleSubmit}>
-            <input onChange={event => setInput('name', event.target.value)} type="text" placeholder="Name"/>
-            <input onChange={event => setInput('address', event.target.value)} type="text" placeholder="Address"/>
-            <input onChange={event => setInput('state', event.target.value)} type="text" placeholder="State"/>
+            <input onChange={event => setName(event.target.value)} type="text" placeholder="Name"/>
+            <input onChange={event => setAddress(event.target.value)} type="text" placeholder="Address"/>
+            <input onChange={event => setState(event.target.value)} type="text" placeholder="State"/>
             <button>Submit</button>
           </form>
         </div>

@@ -4,7 +4,7 @@ import { API, graphqlOperation } from 'aws-amplify'
 import SearchBox from '../../components/SearchBox/SerachBox'
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard'
 import Photo from "../../components/Assets/yp-2.jpg"
-import { listRestaurants } from '../../graphql/queries'
+import * as queries from '../../graphql/queries';
 
 const Home = ()=>{
   const [restaurantList, setRestaurantList] = useState([])
@@ -12,9 +12,8 @@ const Home = ()=>{
     return () => {
       async function fetchRestaurants() {
         try {
-          const restaurantData = await API.graphql(graphqlOperation(listRestaurants))
-          const restaurant = restaurantData.data.listRestaurants.items
-          setRestaurantList(restaurant)
+          const restaurantData = await API.graphql(graphqlOperation(queries.listRestaurants))
+        setRestaurantList(restaurantData.data.listRestaurants.items)
         } catch (err) { console.log('error fetching restaurant') }
       }
       fetchRestaurants()
@@ -26,10 +25,9 @@ const Home = ()=>{
      <SearchBox/>
     </div>
     <div className='main'>
-    {/* {console.log(restaurantList)} */}
-    {restaurantList.map(each_restaurant=>{
+    {restaurantList.map(each_res=>{
       return(
-      <RestaurantCard key={each_restaurant.id} info = {each_restaurant} pix = {Photo}/>
+        <RestaurantCard key = { each_res.id} name= {each_res.name} address = {each_res.address} state = {each_res.state} pix = {Photo} id = {each_res.id} />
       )
     })}
     </div>
