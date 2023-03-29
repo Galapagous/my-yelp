@@ -40,8 +40,8 @@ const Register = ()=>{
         <div className="left-form">
           <form onSubmit={handleSubmit}>
             <input onChange={event => setName(event.target.value)} type="text" placeholder="Name"/>
-            <input onChange={event => setAddress(event.target.value)} type="text" placeholder="Address"/>
-            <input onChange={event => setState(event.target.value)} type="text" placeholder="State"/>
+            <input onChange={event => setAddress(event.target.value)} type="text" placeholder="Description"/>
+            <input onChange={event => setState(event.target.value)} type="text" placeholder="City"/>
             <button>Submit</button>
           </form>
         </div>
